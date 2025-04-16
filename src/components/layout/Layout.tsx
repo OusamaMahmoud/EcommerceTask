@@ -6,14 +6,13 @@ import { Outlet } from "react-router";
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <Navbar />
       <main>
         <Outlet />
       </main>
-      {/* Optionally, you can add a footer here */}
       <Footer />
-    </div>
+    </>
   );
 };
 
