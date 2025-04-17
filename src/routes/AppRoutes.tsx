@@ -6,6 +6,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "../components/layout/Layout";
+import LoginPage from "../pages/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
       },
       {
         path: "/product/:id",

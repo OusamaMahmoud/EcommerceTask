@@ -14,16 +14,20 @@ const Navbar = () => {
     isActive ? `text-textPrimary ${linkClasses}` : linkClasses;
 
   return (
-    <nav className="bg-primary text-white py-4 shadow-md font-semibold">
+    <nav className="bg-primary text-white shadow-md font-semibold">
       {" "}
       <div className="max-w-6xl mx-auto flex justify-between items-center relative px-4">
         {" "}
         {/* Logo */}{" "}
         <div className="text-2xl font-semibold font-serif">
           {" "}
-          <NavLink to="/" className={getActiveClass}>
-            {" "}
-            Makna{" "}
+          <NavLink to="/" className={`${getActiveClass} flex items-center gap-2`}>
+            <img
+              src="../../../public/assets/logo-dark.png"
+              alt="logo"
+              className="w-14 h-14 object-contain "
+            />
+            Makna
           </NavLink>{" "}
         </div>
         {/* Desktop Nav Links */}
