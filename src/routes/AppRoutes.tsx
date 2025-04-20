@@ -14,10 +14,9 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <ProtectedRoute>
-        {" "}
         <Layout />
       </ProtectedRoute>
-    ), // Apply Layout to all child routes
+    ),
     children: [
       {
         path: "/",
@@ -25,7 +24,7 @@ const router = createBrowserRouter([
       },
 
       {
-        path: "/product/:id",
+        path: "/products/:id",
         element: <ProductDetails />,
       },
       {

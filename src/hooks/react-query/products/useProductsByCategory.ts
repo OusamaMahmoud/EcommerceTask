@@ -1,19 +1,6 @@
-// src/hooks/queries/useProductsByCategory.ts
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
-export interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-}
+import { Product } from "../../../types/product/product";
 
 export const useProductsByCategory = (category: string) => {
   return useQuery({

@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useProductsByCategory } from "../../hooks/react-query/products/useProductsByCategory";
-import { ProductCard } from "./ProductCard";
+import { ProductCard } from "../product/ProductCard";
 import Skeleton from "../common/Skeleton";
+import ErrorMessage from "../common/ErrorMessage";
 
 interface Props {
   category: string;
@@ -20,7 +21,6 @@ export const CategoryAccordion = ({ category, isActive, onClick }: Props) => {
       >
         {category}
       </button>
-
       <AnimatePresence>
         {isActive && (
           <motion.div
@@ -30,7 +30,7 @@ export const CategoryAccordion = ({ category, isActive, onClick }: Props) => {
             className="px-4 py-3 bg-gray-50 dark:bg-gray-800"
           >
             {isLoading && <Skeleton />}
-            {error && <p className="text-red-500">Failed to load products.</p>}
+            {error && <ErrorMessage message="Failed to load products." />}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {data?.map((product) => (
                 <ProductCard key={product.id} product={product} />
