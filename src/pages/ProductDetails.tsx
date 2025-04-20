@@ -1,22 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { useParams } from "react-router";
 import ErrorMessage from "../components/common/ErrorMessage";
 import LoadingSpinner from "../components/common/LoadingSpinner";
 import { useCartStore } from "../store/useCartStore";
-
-const fetchProductDetails = async (id: string) => {
-  const res = await axios.get(`https://fakestoreapi.com/products/${id}`);
-  return res.data;
-};
+import { useProductDetails } from "../hooks/react-query/products/useProductDetails";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["product-details", id],
-    queryFn: () => fetchProductDetails(id as string),
-    enabled: !!id,
-  });
+  const { data, isLoading, error } = useProductDetails(id as string);
 
   const { addToCart, increaseQuantity, decreaseQuantity, items } =
     useCartStore();

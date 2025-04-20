@@ -74,7 +74,7 @@ const Navbar = () => {
         </ul>
         {/* Theme Toggle */}
         <div className="hidden md:flex items-center gap-4">
-          <p className="text-lg font-mono max-w-[120px] overflow-x-clip text-ellipsis whitespace-nowrap">
+          <p className="text-lg capitalize font-mono max-w-[120px] overflow-x-clip text-ellipsis whitespace-nowrap">
             Hello {user?.username}
           </p>
           {!isLoggedIn ? (
