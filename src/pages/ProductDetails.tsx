@@ -18,7 +18,11 @@ const ProductDetails = () => {
     enabled: !!id,
   });
 
-  const addToCart = useCartStore((state) => state.addToCart);
+  const { addToCart, increaseQuantity, decreaseQuantity, items } =
+    useCartStore();
+
+  const inCart = items.find((item) => item.id === parseInt(id as string));
+  const quantity = inCart?.quantity || 0;
 
   if (isLoading) return <LoadingSpinner />;
   if (error) return <ErrorMessage message="Failed to load product details." />;
@@ -46,12 +50,32 @@ const ProductDetails = () => {
               ({data.rating.count} reviews)
             </span>
           </div>
-          <button
-            onClick={() => addToCart(data)}
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow"
-          >
-            Add to My Cart
-          </button>
+          <div className="flex items-center gap-2 mt-4">
+            {quantity > 0 ? (
+              <>
+                <button
+                  className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+                  onClick={() => decreaseQuantity(parseInt(id as string))}
+                >
+                  −
+                </button>
+                <span>{quantity}</span>
+                <button
+                  className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+                  onClick={() => increaseQuantity(parseInt(id as string))}
+                >
+                  +
+                </button>
+              </>
+            ) : (
+              <button
+                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                onClick={() => addToCart(data)}
+              >
+                Add to Cart
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>
