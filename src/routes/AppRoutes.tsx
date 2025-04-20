@@ -7,24 +7,23 @@ import Contact from "../pages/Contact";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Layout from "../components/layout/Layout";
 import LoginPage from "../pages/LoginPage";
+import ProtectedRoute from "./ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout />, // Apply Layout to all child routes
+    element: (
+      <ProtectedRoute>
+        {" "}
+        <Layout />
+      </ProtectedRoute>
+    ), // Apply Layout to all child routes
     children: [
       {
         path: "/",
         element: <Home />,
       },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/login",
-        element: <LoginPage />,
-      },
+
       {
         path: "/product/:id",
         element: <ProductDetails />,
@@ -42,6 +41,14 @@ const router = createBrowserRouter([
         element: <Contact />,
       },
     ],
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
   },
 ]);
 

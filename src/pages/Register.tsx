@@ -16,14 +16,14 @@ const RegistrationPage: React.FC = () => {
     resolver: zodResolver(registrationSchema),
   });
 
-  const { mutate: createUser } = useCreateUser();
+  const { mutate: createUser ,isPending} = useCreateUser();
 
   const onSubmit = (data: RegistrationFormData) => {
     createUser(data);
   };
 
   return (
-    <div className=" flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-xl  w-full max-w-2xl">
         <h1 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
           Sign Up
@@ -60,11 +60,11 @@ const RegistrationPage: React.FC = () => {
               error={errors.email?.message}
             />
             <div className="mb-4">
-              <label className="block text-sm font-medium mb-1 text-gray-800 dark:text-gray-200">
+              <label className="block  text-sm font-medium mb-1 text-gray-800 dark:text-gray-200">
                 Address
               </label>
               <textarea
-                className="textarea textarea-bordered w-full bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                className="textarea textarea-bordered border-black w-full bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200"
                 {...register("address")}
               ></textarea>
             </div>
@@ -73,7 +73,7 @@ const RegistrationPage: React.FC = () => {
             type="submit"
             className="btn btn-primary  bg-blue-500 hover:bg-blue-600 text-white dark:bg-blue-600 dark:hover:bg-blue-700"
           >
-            Sign Up
+            {isPending ? "loading..." : "Sign Up"}
           </button>
         </form>
         <div className="mt-4 text-center">

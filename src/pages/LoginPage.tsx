@@ -15,13 +15,13 @@ const LoginPage: React.FC = () => {
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
-  const { mutate: login } = useLogin();
+  const { mutate: login, isPending } = useLogin();
   const onSubmit = (data: LoginFormData) => {
     login(data);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+    <div className="min-h-screen flex items-center justify-center  dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md w-full max-w-md">
         <h1 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
           Login
@@ -43,7 +43,7 @@ const LoginPage: React.FC = () => {
             type="submit"
             className="btn btn-primary w-full bg-blue-500 hover:bg-blue-600 text-white dark:bg-blue-600 dark:hover:bg-blue-700"
           >
-            Login
+            {isPending ? "loading..." : "Login"}
           </button>
         </form>
         <div className="mt-4 text-center">

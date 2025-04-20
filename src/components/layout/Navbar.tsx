@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeToggle from "../common/ThemeToggle";
+import { useAuthStore } from "../../store/useAuthStore";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,6 +15,20 @@ const Navbar = () => {
   const getActiveClass = ({ isActive }: { isActive: boolean }) =>
     isActive ? `text-textPrimary ${linkClasses}` : linkClasses;
 
+  const { logout, isLoggedIn, user } = useAuthStore();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logout successful. See you soon!");
+    navigate("/login");
+  };
+  const handleOpenModal = () => {
+    const modal = document.getElementById("logout_modal") as HTMLDialogElement;
+    if (modal) {
+      modal.showModal();
+    }
+  };
   return (
     <nav className="bg-primary text-white shadow-md font-semibold">
       {" "}
@@ -21,7 +37,10 @@ const Navbar = () => {
         {/* Logo */}{" "}
         <div className="text-2xl font-semibold font-serif">
           {" "}
-          <NavLink to="/" className={`${getActiveClass} flex items-center gap-2`}>
+          <NavLink
+            to="/"
+            className={`${getActiveClass} flex items-center gap-2`}
+          >
             <img
               src="../../../public/assets/logo-dark.png"
               alt="logo"
@@ -35,11 +54,6 @@ const Navbar = () => {
           <li>
             <NavLink to="/" className={getActiveClass}>
               Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/register" className={getActiveClass}>
-              Register
             </NavLink>
           </li>
           <li>
@@ -59,7 +73,17 @@ const Navbar = () => {
           </li>
         </ul>
         {/* Theme Toggle */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-4">
+          <p className="text-lg font-mono max-w-[120px] overflow-x-clip text-ellipsis whitespace-nowrap">
+            Hello {user?.username}
+          </p>
+          {!isLoggedIn ? (
+            <NavLink to="/register" className={getActiveClass}>
+              Register
+            </NavLink>
+          ) : (
+            <button onClick={handleOpenModal}>Logout</button>
+          )}
           <ThemeToggle />
         </div>
         {/* Burger Icon */}
@@ -78,15 +102,7 @@ const Navbar = () => {
                   Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  to="/register"
-                  onClick={toggleMenu}
-                  className={getActiveClass}
-                >
-                  Register
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink
                   to="/cart"
@@ -115,12 +131,47 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className="mt-4">
+            <div className="mt-4 flex flex-col gap-4">
+              <div>
+                <p>{}</p>
+                {!isLoggedIn ? (
+                  <NavLink
+                    to="/register"
+                    onClick={toggleMenu}
+                    className={getActiveClass}
+                  >
+                    Register
+                  </NavLink>
+                ) : (
+                  <button onClick={handleOpenModal} className="my-1">
+                    Logout
+                  </button>
+                )}
+              </div>
               <ThemeToggle />
             </div>
           </div>
         )}
       </div>
+      <dialog id="logout_modal" className="modal ">
+        <div className="modal-box ">
+          <p className="py-2 text-black dark:text-white text-lg font-semibold">
+            Are You Sure You Want To Logout? <br /> You Will Be Redirected To
+            Login Page.
+          </p>
+          <div className="modal-action">
+            <form method="dialog" className="flex gap-2">
+              <button
+                onClick={handleLogout}
+                className="text-black dark:text-white  btn bg-primary"
+              >
+                LogOut
+              </button>
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </nav>
   );
 };
