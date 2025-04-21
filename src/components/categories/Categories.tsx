@@ -1,14 +1,27 @@
-import { useState } from "react";
-import { CategoryAccordion } from "./CategoryAccordion";
+import { useCallback, useState } from "react";
 import { useCategories } from "../../hooks/react-query/products/useCategories";
-import Skeleton from "../common/Skeleton";
 import ErrorMessage from "../common/ErrorMessage";
+import CategoryAccordionSkeleton from "./CategoryAccordionSkeleton";
+import CategoryAccordion from "./CategoryAccordion";
 
 const Categories = () => {
   const { data: categories, isLoading, error, refetch } = useCategories();
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  if (isLoading) return <Skeleton />;
+  const handleToggle = useCallback((category: string) => {
+    setActiveCategory((prev) => (prev === category ? null : category));
+  }, []);
+
+  if (isLoading)
+    return (
+      <>
+        <h1 className="text-2xl font-bold mb-6">Product Categories</h1>
+        {Array.from({ length: 4 }).map((_, idx) => (
+          <CategoryAccordionSkeleton key={idx} />
+        ))}
+      </>
+    );
+
   if (error)
     return (
       <ErrorMessage
@@ -16,6 +29,7 @@ const Categories = () => {
         onRetry={() => refetch()}
       />
     );
+
   return (
     <>
       <h1 className="text-2xl font-bold mb-6">Product Categories</h1>
@@ -24,9 +38,7 @@ const Categories = () => {
           key={cat}
           category={cat}
           isActive={activeCategory === cat}
-          onClick={() =>
-            setActiveCategory((prev) => (prev === cat ? null : cat))
-          }
+          onClick={() => handleToggle(cat)}
         />
       ))}
     </>

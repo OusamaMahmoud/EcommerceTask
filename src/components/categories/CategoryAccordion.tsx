@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import ProductsList from "../product/ProductsList";
+import { memo } from "react";
 
 interface Props {
   category: string;
@@ -7,7 +8,7 @@ interface Props {
   onClick: () => void;
 }
 
-export const CategoryAccordion = ({ category, isActive, onClick }: Props) => {
+const CategoryAccordion = ({ category, isActive, onClick }: Props) => {
   return (
     <div className="border rounded-xl overflow-hidden mb-4">
       <button
@@ -33,3 +34,5 @@ export const CategoryAccordion = ({ category, isActive, onClick }: Props) => {
     </div>
   );
 };
+
+export default memo(CategoryAccordion);

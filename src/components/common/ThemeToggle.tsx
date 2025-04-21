@@ -4,35 +4,37 @@ import { FaSun, FaMoon } from "react-icons/fa";
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
 
-  // Check if dark mode preference is already saved in localStorage
+  // Check the user's system preference (dark or light mode)
   useEffect(() => {
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+
+    // Check if a theme is saved in localStorage
     const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setIsDark(true);
-      document.documentElement.classList.add("dark");
-      document.documentElement.setAttribute("data-theme", "dark"); // Set data-theme attribute to 'dark'
+    if (savedTheme) {
+      setIsDark(savedTheme === "dark");
+      document.documentElement.classList.add(savedTheme);
+      document.documentElement.setAttribute("data-theme", savedTheme);
     } else {
-      document.documentElement.setAttribute("data-theme", "light"); // Set data-theme attribute to 'light'
+      setIsDark(systemTheme === "dark");
+      document.documentElement.classList.add(systemTheme);
+      document.documentElement.setAttribute("data-theme", systemTheme);
     }
   }, []);
 
   const toggleTheme = () => {
+    const newTheme = !isDark ? "dark" : "light";
     setIsDark(!isDark);
-    // Save theme preference in localStorage
-    if (!isDark) {
-      document.documentElement.classList.add("dark");
-      document.documentElement.setAttribute("data-theme", "dark"); // Set data-theme attribute to 'dark'
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      document.documentElement.setAttribute("data-theme", "light"); // Set data-theme attribute to 'light'
-      localStorage.setItem("theme", "light");
-    }
+    // Save the user's theme preference in localStorage
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+    document.documentElement.setAttribute("data-theme", newTheme);
   };
 
   return (
-    <button className=" " onClick={toggleTheme}>
-      {isDark ? <FaSun /> : <FaMoon />} {/* Use icons instead of text */}
+    <button onClick={toggleTheme} className="p-2">
+      {isDark ? <FaSun /> : <FaMoon />}
     </button>
   );
 };

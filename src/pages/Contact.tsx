@@ -1,16 +1,18 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Contact form submitted:", form);
-    alert("Thanks for reaching out! We'll get back to you soon.");
+    toast.success("Thanks for reaching out! We'll get back to you soon.");
     setForm({ name: "", email: "", message: "" });
   };
 

@@ -1,18 +1,22 @@
-// src/components/ProductCard.tsx
 import { FaStar } from "react-icons/fa";
 import { Product } from "../../types/product/product";
 import { Link } from "react-router";
+import { memo } from "react";
 
 interface Props {
   product: Product;
 }
 
-export const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product }: Props) => {
   return (
-    <div className="bg-white rounded-xl shadow-md p-4 flex gap-4 dark:bg-gray-800 overflow-x-clip">
+    <div
+      className="bg-white rounded-xl shadow-md p-4 flex gap-4 dark:bg-gray-800 overflow-x-clip 
+    hover:rotate-1 transition-transform duration-300 ease-in-out hover:scale-105 "
+    >
       <img
         src={product.image}
         alt={product.title}
+        loading="lazy"
         className="w-24 h-24 object-contain"
       />
       <div className="flex-1 max-w-36">
@@ -32,3 +36,5 @@ export const ProductCard = ({ product }: Props) => {
     </div>
   );
 };
+
+export default memo(ProductCard);

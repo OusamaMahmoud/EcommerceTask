@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#FF6F61", // Coral Red
+        primary: "#FFC107", // Coral Red
         secondary: "#4CAF50", // Green
         background: "#F5F5F5", // Light Gray
         textPrimary: "#333333", // Dark Gray
