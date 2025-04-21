@@ -11,7 +11,7 @@ export const useProductsByCategory = (category: string) => {
   return useQuery({
     queryKey: ["products", category],
     queryFn: () => getProductsByCategory(category),
-    enabled: !!category, // only fetch when category is defined
+    enabled: !!category, 
     staleTime: 1000 * 60 * 5,
   });
 };

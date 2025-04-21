@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { NavLink, useNavigate } from "react-router"; // fixed incorrect import
+import { NavLink, useNavigate } from "react-router"; 
 import { FaBars, FaSignOutAlt, FaTimes } from "react-icons/fa";
 import ThemeToggle from "../common/ThemeToggle";
 import { useAuthStore } from "../../store/useAuthStore";

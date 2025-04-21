@@ -71,7 +71,6 @@ const SortableCartItem = ({ product }: { product: CartItem }) => {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            console.log(product.id);
             removeFromCart(product.id);
           }}
           className="text-red-500 hover:text-red-700 bg-red-100 p-2 rounded-xl"

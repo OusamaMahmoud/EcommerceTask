@@ -41,15 +41,7 @@ export const useCartStore = create<CartState>((set) => ({
 
   removeFromCart: (id) =>
     set((state) => {
-      console.log(
-        "Before remove:",
-        state.items.map((i) => i.id)
-      );
       const newItems = state.items.filter((item) => item.id !== id);
-      console.log(
-        "After remove:",
-        newItems.map((i) => i.id)
-      );
       return { items: newItems };
     }),
 

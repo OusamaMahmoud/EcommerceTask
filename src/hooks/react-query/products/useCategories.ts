@@ -12,8 +12,8 @@ export const useCategories = () => {
   return useQuery({
     queryKey: ["productCategories"],
     queryFn: getProductCategories,
-    staleTime: 1000 * 60 * 5, // cache for 5 minutes
-    retry: 2, // retry on failure 2 times
+    staleTime: 1000 * 60 * 5, 
+    retry: 2,
     refetchOnWindowFocus: false,
   });
 };

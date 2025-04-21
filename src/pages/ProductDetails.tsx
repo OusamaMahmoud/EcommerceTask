@@ -54,7 +54,7 @@ const ProductDetails = () => {
           <p className="text-lg font-semibold text-green-600 mb-4">
             ${data.price}
           </p>
-          <p className="text-gray-700 mb-4">{data.description}</p>
+          <p className="text-gray-700 dark:text-white mb-4">{data.description}</p>
           <div className="flex items-center gap-2 mb-4">
             <span className="text-yellow-500 font-semibold">
               ⭐ {data.rating.rate}
