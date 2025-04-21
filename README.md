@@ -1,54 +1,48 @@
-# React + TypeScript + Vite
+# Makank E-Commerce 🛍️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive e-commerce web application built with React, TypeScript, TailwindCSS, DaisyUI, Zustand, and React Query.
 
-Currently, two official plugins are available:
+## 🧩 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- User registration and login
+- Product listing with categories
+- Product details with quantity controls
+- Shopping cart with drag-and-drop reordering
+- Theme toggle (Dark/Light mode)
+- Responsive design (Mobile-first)
+- Real-time cart updates using Zustand
 
-## Expanding the ESLint configuration
+## 🔧 Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- TailwindCSS + DaisyUI
+- Zustand (State Management)
+- React Hook Form
+- React Query (TanStack)
+- Axios
+- React Icons
+- DnD Kit for drag-and-drop
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🚀 Live Demo
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**[View Deployed App on Vercel](https://ecommerce-task-puce.vercel.app)**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🛠️ Getting Started
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/OusamaMahmoud/EcommerceTask
+cd Makank-ecommerce
+
+2. Install dependencies
+npm install
+
+3. Run the app
+npm run dev
+
+4. Build for production
+npm run build
+
+🧑‍💻 Author
+Osama [https://github.com/OusamaMahmoud]
