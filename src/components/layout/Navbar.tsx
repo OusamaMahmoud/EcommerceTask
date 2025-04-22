@@ -50,7 +50,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden md:flex space-x-6 text-lg font-mono">
+        <ul className="hidden md:flex space-x-6 md:space-x-3 lg:space-x-6 text-lg font-mono">
           <li>
             <NavLink to="/" className={getActiveClass}>
               Home
@@ -74,7 +74,7 @@ const Navbar = () => {
         </ul>
 
         {/* Theme Toggle & Auth Actions */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-2 lg:gap-4 ">
           <p className="text-lg capitalize font-mono max-w-[120px] overflow-x-clip text-ellipsis whitespace-nowrap">
             Hello, {user?.username}
           </p>
@@ -91,7 +91,7 @@ const Navbar = () => {
             <div className="relative">
               <button
                 onClick={handleOpenModal}
-                className="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition flex items-center gap-2"
+                className="bg-primary text-white py-2 lg:px-4 rounded hover:bg-primary-dark transition flex items-center gap-2"
               >
                 <span>Logout</span>
                 <FaSignOutAlt />
@@ -145,7 +145,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            <div className="mt-4 flex flex-col gap-4">
+            <div className="mt-4 flex flex-col  gap-4">
               {!isLoggedIn ? (
                 <NavLink
                   to="/register"
@@ -155,7 +155,7 @@ const Navbar = () => {
                   Register
                 </NavLink>
               ) : (
-                <button onClick={handleOpenModal} className="my-1">
+                <button onClick={handleOpenModal} className="my-1 self-start">
                   Logout
                 </button>
               )}
